@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      To do list
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input #taskInput type="text" placeholder="Enter task" [(ngModel)]="taskName"></ion-input>
+	  <div class="item-note" ion-align-items-end>
+	  		<ion-button (click)="addTask()"><ion-icon name="add"></ion-icon></ion-button>
+	  </div>
+  </ion-item>
+		<ion-list>
+      <ion-item *ngFor="let todo of taskList; let i = index" id="{{todo}}">
+        <ion-grid>
+          <ion-row class="ion-align-items-center" >
+				    <ion-col>{{todo}}</ion-col>
+            <ion-col>
+              <ion-row class="ion-justify-content-end">
+                <ion-button clear (click)="updateTask(i)">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+                <ion-button clear (click)="deleteTask(i)">
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+                <ion-button clear (click)="crossOutTask(todo)">
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-col>
+            </ion-row>
+        </ion-grid>
+      </ion-item>
+		</ion-list>
+</ion-content>
